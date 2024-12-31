@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="section">
+  <div class="content has-text-centered">
+    <p
+      class="title"
+      style="color: #ffffff; text-shadow: 2px 2px 4px rgb(31, 34, 41)"
+    >
+      @{{ user.username }}
+    </p>
+  </div>
+</div>
+<progress class="progress is-small is-primary" max="100%">10%</progress>
+<div>
+  <div class="content has-text-centered">
+    <h2
+      class="title is-2"
+      style="color: #ffffff; text-shadow: 2px 2px 4px rgb(31, 34, 41)"
+    >
+      Confessions For:
+    </h2>
+  </div>
+</div>
+{% if confessions %}
+<div class="grid mx-4">
+  {% for confession in confessions %}
+  <div class="cell">
+    <a href="{% url 'confessionPage' confession.letter_id %}">
+      <div class="notification has-text-centered">
+        <p>{{ confession.letter_receiver }}</p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<div class="content has-text-centered">
+  <h3 class="title is-3">No confessions made</h3>
+</div>
+{% endif %}
+<div class="has-text-centered">
+    <a href="{% url 'createConfession'%}">
+      <button class="button is-link">Create New Confession</button>
+    </a>
+</div>
+{% endblock content %}

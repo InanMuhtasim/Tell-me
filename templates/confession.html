@@ -1,0 +1,65 @@
+{% extends "base.html" %} {% block content %}
+<div
+  class="mx-5"
+  style="
+    top: 60px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgb(31, 34, 41);
+  "
+>
+  <h1 class="title is-2 has-text-primary-light">
+    Hey {{ confession.letter_receiver}}, {{ confession.creator }} has somethings
+    that he wanted to tell you. Here is the message:
+  </h1>
+  <br />
+  <h3 class="title is-3">{{ confession.message|linebreaksbr }}</h3>
+  <br />
+  {% if request.user == confession.creator %}
+  <!-- Button to copy the URL -->
+  <button id="copy-url-btn" class="button is-link">Copy URL</button>
+  <h4 class="title is-4 has-text-link-light">Copy Link</h4>
+
+
+  <!-- JavaScript for copying the URL -->
+  <script>
+    // Get the button element
+    const copyButton = document.getElementById("copy-url-btn");
+
+    // Function to copy the current page URL to clipboard
+    copyButton.addEventListener("click", () => {
+      // Get the current page URL
+      const url = window.location.href;
+
+      // Use the Clipboard API to copy the URL
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          // Provide feedback to the user
+          alert("URL copied to clipboard!");
+        })
+        .catch((err) => {
+          // Handle any errors
+          console.error("Failed to copy: ", err);
+        });
+    });
+  </script>
+
+
+  <br>
+  <h4 class="title is-4 has-text-link-light">Edit Your Confession:</h4>
+  <a href="{% url 'updateConfession' confession.letter_id %}">
+    <button class="button is-link">Edit</button>
+  </a>
+  <a href="{% url 'deleteConfession' confession.letter_id %}">
+    <button class="button is-link">Delete</button>
+  </a>
+  {% else %}
+  <h4 class="title is-4 has-text-link-light">
+    Want to express your own feelings to someone?
+  </h4>
+  <a href="{% url 'help' %}">
+    <button class="button is-link">Yes</button>
+  </a>
+  {% endif %}
+</div>
+{% endblock content %}

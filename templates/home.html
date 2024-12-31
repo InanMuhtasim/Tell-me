@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% load static %}
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+
+<header class="container">
+  <div
+    class="is-overlay mx-5"
+    style="
+      top: 60px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgb(31, 34, 41);
+    "
+  >
+    <h1 class="title is-3">Unveil Your Inner Thoughts and Messages</h1>
+    <br>
+    <a href="{% url 'help' %}">
+    <button class="button is-link">How?</button>
+    </a>
+  </div>
+</header>
+
+{% endblock content %}

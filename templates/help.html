@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block content %}
+
+<header class="container">
+  <div
+    class="is-overlay mx-5"
+    style="
+      top: 60px;
+      text-align: center;
+      text-shadow: 2px 2px 4px rgb(31, 34, 41);
+    "
+  >
+    <h1 class="title is-3">How to use Tell me?</h1>
+    <br />
+    <h1 class="title is-3">
+      1. Create your confession and give it a key(Password)
+    </h1>
+    <br />
+    <h1 class="title is-3">
+      2. Send the link of confession and its key to the desired person
+    </h1>
+    <br />
+    <h1 class="title is-3">3. When they open the link, they will have to put the key in</h1>
+    <h1 class="title is-3">4. Then, They will be able to see what you told them</h1>
+    {% if user.is_authenticated %}
+    <a href="{% url 'createConfession'%}">
+      <button class="button is-link">Create</button>
+    </a>
+    {% else %}
+    <h1 class="title is-5">!You have to be logged in!</h1>
+    <a href="{% url 'createConfession'%}">
+      <button class="button is-link">Login</button>
+    </a>
+    {% endif %}
+  </div>
+</header>
+
+{% endblock content %}

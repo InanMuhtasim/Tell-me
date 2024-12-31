@@ -1,0 +1,47 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %} Tell me {% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="icon" href="{% static 'images/tree.ico' %}" />
+    <style>
+      body {
+        background: url("{% static 'images/windows_bg.jpg' %}") bottom center /
+          cover fixed;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {% include "nav.html" %} {% if messages %} {% for message in messages %}
+    {%if message.tags == 'success' %}
+    <div class="notification is-success">
+      <button class="delete"></button>
+      {{ message }}
+    </div>
+    {% elif message.tags == 'error' %}
+    <div class="notification is-danger">
+      <button class="delete"></button>
+      {{ message }}
+    </div>
+    {% elif message.tags == 'info' %}
+    <div class="notification is-info">
+      <button class="delete"></button>
+      {{ message }}
+    </div>
+    {% else %}
+    <div class="notification">
+      <button class="delete"></button>
+      {{ message }}
+    </div>
+    {% endif %} {% endfor %} {% endif %}
+    {% block content %} {% endblock content%}
+
+    <script src="{% static 'brain/index.js'%}"></script>
+  </body>
+</html>
