@@ -1,1 +1,1 @@
-web: python manage.py migrate --noinput && gunicorn project_name.wsgi:application
+web: gunicorn tell_me.wsgi

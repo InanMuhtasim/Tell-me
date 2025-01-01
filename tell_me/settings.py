@@ -35,7 +35,7 @@ if ENVIRONMENT == "development":
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "tell-me.up.railway.app"]
+ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = ["https://tell-me.up.railway.app"]
 
@@ -99,10 +99,8 @@ DATABASES = {
 import dj_database_url
 
 MYSQL_LOCALLY = True
-if ENVIRONMENT == "production":
+if ENVIRONMENT == "production" or MYSQL_LOCALLY:
     DATABASES["default"] = dj_database_url.parse(env("DB_URL"))
-elif MYSQL_LOCALLY: 
-    DATABASES["default"] = dj_database_url.parse(env("PUBLIC_DB_URL"))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
