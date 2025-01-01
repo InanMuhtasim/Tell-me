@@ -6,7 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system dependencies needed for mysqlclient and Python build tools
 RUN apt-get update && apt-get install -y \
-    libmysqlclient-dev \
+    libmariadb-dev-compat \
+    libmariadb-dev \
     build-essential \
     gcc \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
