@@ -94,6 +94,13 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+
+MYSQL_LOCALLY = True
+if ENVIRONMENT == "production":
+    DATABASES["default"] = dj_database_url.parse(env("DB_URL"))
+elif MYSQL_LOCALLY: 
+    DATABASES["default"] = dj_database_url.parse(env("PUBLIC_DB_URL"))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
