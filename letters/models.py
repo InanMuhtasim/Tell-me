@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class Confession(models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='confessions')
     letter_receiver = models.CharField(max_length=20)
-    letter_id = models.SlugField(max_length=10, primary_key=True)
+    letter_id = models.SlugField(max_length=50, primary_key=True)
     key= models.CharField(max_length=20)
     message = models.TextField()
     
